@@ -30,7 +30,12 @@ class AccountContainer extends Component {
   // ill do category
   // make a function that when a user types the lists filters
 
+  dataToDisplay = () => {
+      return this.state.search ? this.filterResults() : this.state.transactionsData
+  }
 
+  filterResults = () => {
+    return this.state.transactionsData.filter(transaction => transaction.category.toLowerCase().includes(this.state.search.toLowerCase()))}
 
 
   render() {
@@ -38,7 +43,7 @@ class AccountContainer extends Component {
     return (
       <div>
         <Search handleChanges={this.handleChange}/>
-        <TransactionsList transactionsData={this.state.transactionsData}/>
+        <TransactionsList transactionsData={this.state.dataToDisplay()}/>
       </div>
     )
   }

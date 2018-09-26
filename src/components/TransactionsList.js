@@ -1,6 +1,14 @@
 import React from 'react'
+import Transaction from './Transaction'
+import v4 from 'uuid'
 
-const TransactionsList = () => {
+const TransactionsList = (props) => {
+
+  const dataRows = props.transactions.map((t)=>{
+    return <Transaction cellValues={t}
+                 key={v4()}
+                 id={t.id}/>
+      })
 
   return (
     <table className="ui celled striped padded table">
@@ -28,7 +36,7 @@ const TransactionsList = () => {
           </th>
         </tr>
 
-        {"... your code here..."}
+        {dataRows}
 
       </tbody>
     </table>

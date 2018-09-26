@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Transaction = () => {
+const Transaction = (props) => {
   return (
-    <tr>
-      <td>{"...your code here"}</td>
-      <td>{"...your code here"}</td>
-      <td>{"...your code here"}</td>
-      <td>{"...your code here"}</td>
+    <tr id={props.id}>
+      <td>{props.cellValues.posted_at}</td>
+      <td>{props.cellValues.description}</td>
+      <td>{props.cellValues.category}</td>
+      <td>{props.cellValues.amount}</td>
     </tr>
   )
 }

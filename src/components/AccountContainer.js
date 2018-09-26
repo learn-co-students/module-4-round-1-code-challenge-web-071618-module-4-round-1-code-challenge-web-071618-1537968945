@@ -23,9 +23,10 @@ class AccountContainer extends Component {
 }
 
   handleChange = (event) => {
-     this.setState({search: event.target.value}, () => console.log(this.state.search));
+     this.setState({search: event.target.value},() => this.filterResults(),console.log(this.state.search))
   }
 
+  //use callback above this call this.
   // get user input to filter the results of the transactions data array to only display what a user is typing in catergoy or description
   // ill do category
   // make a function that when a user types the lists filters
@@ -43,7 +44,7 @@ class AccountContainer extends Component {
     return (
       <div>
         <Search handleChanges={this.handleChange}/>
-        <TransactionsList transactionsData={this.state.dataToDisplay()}/>
+        <TransactionsList transactionsData={this.dataToDisplay()}/>
       </div>
     )
   }

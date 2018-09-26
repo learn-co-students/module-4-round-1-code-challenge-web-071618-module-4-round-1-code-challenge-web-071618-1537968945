@@ -5,28 +5,47 @@ import {transactions} from '../transactionsData'
 
 class AccountContainer extends Component {
 
-  constructor() {
-    super()
-
-    // get a default state working with the data imported from TransactionsData
-    // use this to get the functionality working
-    // then replace the default transactions with a call to the API
-
+  state = {
+    transactions: [],
+    displayArray: []
   }
 
   handleChange(event) {
-    // your code here
+    // this.state.transactions.select(transaction => {
+    //   return transaction.category === event.target.value
+    // })
+    // this.state.transactions.select(transaction => {
+    //   return transaction.description === event.target.value
+    // })
+
+    //I haven't gotten this function to work yet, so I commented it out. But my intention
+    //was to select by category/description where the event.target.value matched, and then
+    //either change the state (which i haven't added yet) from false => true, or by displaying
+    //only one of two arrays, the one which matched.
   }
 
   render() {
-
     return (
       <div>
-        <Search />
-        <TransactionsList />
+        <Search handleChange={this.handleChange}/>
+        <TransactionsList allTransactions={this.state}/>
       </div>
     )
   }
+
+  componentDidMount(){
+    fetch('https://boiling-brook-94902.herokuapp.com/transactions')
+    .then(response => response.json())
+    .then(data => {
+
+      this.setState({
+        transactions: data
+      })
+
+    })
+  }
+
+
 }
 
 export default AccountContainer
